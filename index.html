@@ -1,0 +1,712 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>周卉涵个人网页整合版</title>
+  <style>
+    :root {
+      --ink: #111113;
+      --body: #55555a;
+      --muted: #7a7a80;
+      --blue: #0071e3;
+      --green: #1f7a5c;
+      --gold: #a96f10;
+      --paper: #ffffff;
+      --soft: #f5f5f7;
+      --line: #dfdfe4;
+      --dark: #161617;
+      --radius: 8px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: hidden;
+      background: #fff;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      height: 56px;
+      padding: 0 max(24px, calc((100vw - 1180px) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: saturate(180%) blur(18px);
+      font-size: 13px;
+    }
+
+    .brand {
+      font-weight: 680;
+      font-size: 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      color: #3d3d42;
+    }
+
+    .nav-links a:last-child {
+      padding: 7px 13px;
+      border-radius: 999px;
+      color: #fff;
+      background: var(--blue);
+    }
+
+    .hero {
+      min-height: 720px;
+      display: grid;
+      align-items: center;
+      padding: 96px max(24px, calc((100vw - 1180px) / 2)) 72px;
+      background:
+        linear-gradient(180deg, #ffffff 0%, #fbfbfd 62%, #f5f5f7 100%);
+    }
+
+    .hero-inner {
+      width: 100%;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 330px;
+      gap: 72px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--blue);
+      font-size: 18px;
+      line-height: 1.4;
+      font-weight: 680;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(52px, 7vw, 92px);
+      line-height: 1.02;
+      font-weight: 760;
+    }
+
+    .hero-copy {
+      max-width: 790px;
+      margin: 26px 0 0;
+      color: var(--body);
+      font-size: clamp(19px, 2.1vw, 25px);
+      line-height: 1.48;
+    }
+
+    .education-strip {
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+      color: #68686d;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .education-strip span {
+      display: block;
+    }
+
+    .actions {
+      margin-top: 34px;
+      display: flex;
+      justify-content: flex-start;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .portrait-card {
+      justify-self: end;
+      width: 330px;
+      border-radius: 32px;
+      padding: 10px;
+      background: rgba(255, 255, 255, .76);
+      border: 1px solid rgba(0, 0, 0, .08);
+      box-shadow: 0 30px 70px rgba(0, 0, 0, .12);
+    }
+
+    .portrait-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      object-position: center 18%;
+      border-radius: 24px;
+    }
+
+    .portrait-caption {
+      padding: 14px 10px 6px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      text-align: center;
+    }
+
+    .button {
+      min-height: 40px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0 19px;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      white-space: nowrap;
+    }
+
+    .button.secondary {
+      background: #e9e9ee;
+      color: var(--ink);
+    }
+
+    .section {
+      padding: 96px max(24px, calc((100vw - 1180px) / 2));
+    }
+
+    .section.soft {
+      background: var(--soft);
+    }
+
+    .section.dark {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .section-head {
+      max-width: 780px;
+      margin-bottom: 38px;
+    }
+
+    .section-kicker {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 680;
+    }
+
+    .dark .section-kicker {
+      color: #78b7ff;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1.08;
+      font-weight: 740;
+    }
+
+    .section-head p {
+      margin: 18px 0 0;
+      color: var(--body);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .dark .section-head p {
+      color: rgba(255, 255, 255, .68);
+    }
+
+    .capability-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .06);
+      border-radius: var(--radius);
+      padding: 30px;
+      min-height: 260px;
+    }
+
+    .card h3,
+    .timeline-title,
+    .work-card h3,
+    .vol-card h3 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.18;
+      font-weight: 700;
+    }
+
+    .card p,
+    .timeline-body,
+    .work-card p,
+    .vol-card p {
+      margin: 14px 0 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f1f1f4;
+      color: #444449;
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 34px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-time {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .timeline-org {
+      margin-top: 8px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .work-card {
+      min-height: 360px;
+      padding: 30px;
+      border-radius: var(--radius);
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-label {
+      margin-bottom: 18px;
+      color: var(--green);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 680;
+    }
+
+    .vol-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .vol-hero {
+      min-height: 430px;
+      border-radius: var(--radius);
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .03)),
+        #242426;
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .vol-hero h3 {
+      margin: 0;
+      max-width: 520px;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 740;
+    }
+
+    .vol-hero p {
+      max-width: 520px;
+      margin: 18px 0 0;
+      color: rgba(255, 255, 255, .7);
+      font-size: 17px;
+      line-height: 1.65;
+    }
+
+    .vol-meta {
+      color: rgba(255, 255, 255, .78);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .vol-cards {
+      display: grid;
+      gap: 18px;
+    }
+
+    .vol-card {
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 28px;
+    }
+
+    .vol-card p {
+      color: rgba(255, 255, 255, .68);
+    }
+
+    .vol-card .pill {
+      background: rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .86);
+    }
+
+    .closing {
+      text-align: center;
+      padding-top: 112px;
+      padding-bottom: 112px;
+    }
+
+    .closing h2 {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .closing p {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: var(--body);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .contact-line {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 900px) {
+      .nav {
+        padding: 0 18px;
+      }
+
+      .nav-links a:not(:last-child) {
+        display: none;
+      }
+
+      .hero {
+        min-height: 620px;
+        padding-top: 74px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 34px;
+      }
+
+      .portrait-card {
+        justify-self: center;
+        width: min(320px, 100%);
+      }
+
+      .section {
+        padding-top: 72px;
+        padding-bottom: 72px;
+      }
+
+      .capability-grid,
+      .work-grid,
+      .vol-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .card,
+      .work-card,
+      .vol-card,
+      .vol-hero {
+        padding: 24px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav">
+      <a class="brand" href="#">Hannah Zhou</a>
+      <div class="nav-links">
+        <a href="#experience">经历</a>
+        <a href="#work">作品</a>
+        <a href="#volunteer">志愿</a>
+        <a href="mailto:hannahzhou705@126.com">联系</a>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-inner">
+        <div>
+          <p class="eyebrow">Public Finance · Macro Research · Data Analysis</p>
+          <h1>周卉涵</h1>
+          <p class="hero-copy">关注公共财政、宏观政策、风险监测与行业研究。经历覆盖创投 IR、咨询、能源风控、证券研究和国际财经研究，并具备英文研究写作与数据分析能力。</p>
+          <div class="education-strip" aria-label="教育背景">
+            <span>中央财经大学 · 中国公共财政与政策研究院 · 财政学硕士研一（2025.09 - 2028.06）</span>
+            <span>山东大学 · 经济学院 · 经济学学士（2021.09 - 2025.06）</span>
+          </div>
+          <div class="actions">
+            <a class="button" href="#work">查看研究作品</a>
+            <a class="button secondary" href="#experience">浏览经历</a>
+          </div>
+        </div>
+        <figure class="portrait-card">
+          <img src="portrait.jpg" alt="周卉涵证件照">
+          <figcaption class="portrait-caption">Hannah Zhou · 财政学 / 经济学</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section soft" aria-labelledby="capabilities-title">
+      <div class="section-head">
+        <p class="section-kicker">Core Capabilities</p>
+        <h2 id="capabilities-title">研究判断、数据处理与英文表达。</h2>
+        <p>从政策研究、行业分析到数据可视化，三类能力共同构成我的研究方法和表达方式。</p>
+      </div>
+      <div class="capability-grid">
+        <article class="card">
+          <h3>政策与宏观研究</h3>
+          <p>跟踪国际组织、多边机构、全球智库与债市动态，围绕宏观经济、财政政策、主权债务和风险事件形成研究材料。</p>
+          <div class="pill-row">
+            <span class="pill">财政政策</span>
+            <span class="pill">宏观跟踪</span>
+            <span class="pill">主权债务</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>行业与商业分析</h3>
+          <p>在咨询和证券研究场景中梳理市场驱动因素、竞争格局、产品矩阵、上下游价值链与企业增长策略。</p>
+          <div class="pill-row">
+            <span class="pill">能源动力</span>
+            <span class="pill">医药研究</span>
+            <span class="pill">战略分析</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>数据与可视化</h3>
+          <p>使用 Python、Stata、Excel、Wind、iFinD、Thinkcell 和 Power BI 完成数据清洗、指标计算与可视化报告。</p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Stata</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">SQL</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <div class="section-head">
+        <p class="section-kicker">Experience Timeline</p>
+        <h2 id="experience-title">了解更多行业，也从后台分析走向更面向人的沟通与连接。</h2>
+        <p>从证券研究、能源风控、咨询到人民币 IR，我在不同业务场景中理解行业与组织，也逐步把研究、数据和材料能力延伸到投资者沟通与关系维护。</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2026.05 - 至今</div>
+            <div class="timeline-org">蓝驰创投</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">人民币 IR</h3>
+            <p class="timeline-body">负责投资者关系维护、基金募集文件撰写、基金数据处理、基金运营与投资者活动支持，在基金业务中连接数据、材料与外部沟通。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2025.05 - 2025.07</div>
+            <div class="timeline-org">Frost & Sullivan</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">咨询师助理</h3>
+            <p class="timeline-body">围绕能源动力行业开展市场研究、出货量预测、竞争分析与企业增长战略咨询，撰写研究报告并制作产品介绍、价值链和市场结构图示。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2024.12 - 2025.03</div>
+            <div class="timeline-org">中国石油集团</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">年金风控部</h3>
+            <p class="timeline-body">跟踪宏观政策、债市动态和信用风险事件，参与风控周报和风险监测报告；使用 Python 与 Wind 接口进行投资产品风险指标计算和可视化分析。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2024.08 - 2024.11</div>
+            <div class="timeline-org">华西证券</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">研究所医药组</h3>
+            <p class="timeline-body">进行医药行业数据处理与分析，撰写市场价格与销量周度跟踪报告，制作路演资料、个股点评报告和公司深度报告底稿。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2023.08 - 2023.12</div>
+            <div class="timeline-org">财政部国际财经中心</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">宏观跟踪与策略研究</h3>
+            <p class="timeline-body">阅读、翻译并整理全球宏观经济、财政政策和主权债务相关英文材料，参与《美国宏观经济评价》《全球贸易新特点研究》等课题报告。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft" id="work" aria-labelledby="work-title">
+      <div class="section-head">
+        <p class="section-kicker">Selected Work</p>
+        <h2 id="work-title">文字功底强，参与发表多篇论文。</h2>
+        <p>这些研究和项目集中呈现了我对经济议题的选题能力、实证训练、研究写作和结果表达能力。</p>
+      </div>
+      <div class="work-grid">
+        <article class="work-card">
+          <div>
+            <div class="work-label">Published · 第二作者 · 2025.08</div>
+            <h3>租赁住房 REITs 的发展前景及风险收益</h3>
+            <p>基于长期资金投资视角，讨论租赁住房 REITs 的底层资产扩容空间、股债双重属性，以及运营风险、代理风险和估值波动风险。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">REITs</span>
+            <span class="pill">长期资金</span>
+            <span class="pill">风险收益</span>
+          </div>
+        </article>
+        <article class="work-card">
+          <div>
+            <div class="work-label">Awarded · 独立作者 · 2024.05</div>
+            <h3>数字经济与企业创新绩效</h3>
+            <p>来自中国上市公司的证据，研究数字经济对企业创新产出的促进作用，以及市场集中度对该机制的削弱影响。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">数字经济</span>
+            <span class="pill">企业创新</span>
+            <span class="pill">实证研究</span>
+          </div>
+        </article>
+        <article class="work-card">
+          <div>
+            <div class="work-label">Research Assistant · 2023-2024</div>
+            <h3>完善政府债务管理制度与资本性预算</h3>
+            <p>参与国家发改委委托课题，使用爬虫技术搜集政府网站 PDF 与数据，并使用 Python、Excel、Stata 负责实证部分研究。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">政府债务</span>
+            <span class="pill">Python</span>
+            <span class="pill">Stata</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark" id="volunteer" aria-labelledby="volunteer-title">
+      <div class="section-head">
+        <p class="section-kicker">Volunteer Experience</p>
+        <h2 id="volunteer-title">志愿经历作为个人温度，也证明跨文化协作能力。</h2>
+        <p>在研究与实习之外，我也希望把国际教育、公共议题和真实协作带进自己的长期实践。</p>
+      </div>
+      <div class="vol-layout">
+        <article class="vol-hero">
+          <div>
+            <h3>在捷克，把文化差异变成一堂堂可参与的国际课堂。</h3>
+            <p>AIESEC 捷克共和国 Office · SDGs 教育平权志愿者，面向当地 9-19 岁学生开展文化与教育活动。</p>
+          </div>
+          <div class="vol-meta">
+            2026.01 - 2026.03<br>
+            English as working language · SDGs education · Cross-cultural collaboration
+          </div>
+        </article>
+        <div class="vol-cards">
+          <article class="vol-card">
+            <h3>内容运营与课程设计</h3>
+            <p>根据问卷与课堂观察设计节日、饮食、语言等文化模块，独立策划并执行 60+ 场互动课程，并协助举办烹饪体验、模拟人生等活动。</p>
+            <div class="pill-row">
+              <span class="pill">课程策划</span>
+              <span class="pill">互动教学</span>
+              <span class="pill">内容运营</span>
+            </div>
+          </article>
+          <article class="vol-card">
+            <h3>跨文化协作与项目落地</h3>
+            <p>与当地学校、AIESEC 组织和其他国家志愿者协调排课与资源，在有限条件下保障项目覆盖 6 所学校、1000+ 名学生。</p>
+            <div class="pill-row">
+              <span class="pill">英文沟通</span>
+              <span class="pill">资源协调</span>
+              <span class="pill">SDGs</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <h2>Research, translated into decisions.</h2>
+      <p>欢迎围绕公共财政、宏观政策、行业研究、数据分析或跨文化教育项目交流。</p>
+      <div class="actions">
+        <a class="button" href="mailto:hannahzhou705@126.com">发送邮件</a>
+        <a class="button secondary" href="#work">回到作品集</a>
+      </div>
+      <div class="contact-line">
+        <span>hannahzhou705@126.com</span>
+        <span>Central University of Finance and Economics</span>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
