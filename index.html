@@ -1,0 +1,1071 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>周卉涵 | 个人主页</title>
+  <style>
+    :root {
+      --ink: #111113;
+      --body: #55555a;
+      --muted: #76767c;
+      --blue: #0071e3;
+      --soft: #f5f5f7;
+      --line: #dedee3;
+      --card: #ffffff;
+      --dark: #161617;
+      --green: #1f7a5c;
+      --gold: #a96f10;
+      --shadow: 0 24px 70px rgba(0, 0, 0, .12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 86px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", "Microsoft YaHei", sans-serif;
+      letter-spacing: 0;
+      overflow-x: hidden;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .page {
+      overflow: visible;
+      background: #fff;
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 60;
+      height: 64px;
+      padding: 0 max(24px, calc((100vw - 1180px) / 2));
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(0, 0, 0, .08);
+      background: rgba(255, 255, 255, .78);
+      backdrop-filter: saturate(180%) blur(18px);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 720;
+      font-size: 15px;
+    }
+
+    .brand-mark {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, .18);
+      display: grid;
+      place-items: center;
+      font-size: 13px;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #3d3d42;
+      font-size: 14px;
+      font-weight: 650;
+    }
+
+    .nav-links a {
+      padding: 10px 15px;
+      border-radius: 999px;
+      transition: background .2s ease, color .2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      background: #111113;
+      color: #fff;
+    }
+
+    .hero {
+      min-height: 760px;
+      padding: 96px max(24px, calc((100vw - 1180px) / 2)) 82px;
+      display: grid;
+      align-items: center;
+      background: linear-gradient(180deg, #fff 0%, #fbfbfd 60%, #f5f5f7 100%);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) 360px;
+      gap: 78px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--blue);
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(58px, 8vw, 108px);
+      line-height: 1;
+      font-weight: 780;
+    }
+
+    .role {
+      margin: 18px 0 0;
+      color: #a35fd7;
+      font-size: clamp(24px, 3vw, 38px);
+      line-height: 1.2;
+      font-weight: 650;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: 24px 0 0;
+      color: var(--body);
+      font-size: 20px;
+      line-height: 1.65;
+    }
+
+    .education-strip {
+      display: grid;
+      gap: 8px;
+      margin-top: 22px;
+      color: #68686d;
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .actions {
+      margin-top: 30px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .button {
+      min-height: 42px;
+      padding: 0 20px;
+      border: 0;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      background: var(--blue);
+      color: #fff;
+      font-size: 15px;
+      font-weight: 650;
+      white-space: nowrap;
+    }
+
+    .button.secondary {
+      background: #e9e9ee;
+      color: var(--ink);
+    }
+
+    .portrait-card {
+      justify-self: end;
+      width: min(470px, 100%);
+      min-height: 520px;
+      position: relative;
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 50% 45%, rgba(255, 255, 255, .96), rgba(245, 245, 247, .72) 46%, rgba(245, 245, 247, 0) 70%);
+    }
+
+    .photo-node {
+      position: absolute;
+      overflow: hidden;
+      border-radius: 26px;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .08);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, .12);
+    }
+
+    .photo-node img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .photo-node.center {
+      width: 210px;
+      height: 260px;
+      left: 50%;
+      top: 50%;
+      z-index: 4;
+      transform: translate(-50%, -50%);
+      border-radius: 30px;
+      box-shadow: 0 26px 70px rgba(0, 0, 0, .18);
+    }
+
+    .photo-node.one {
+      width: 158px;
+      height: 204px;
+      left: 0;
+      top: 52px;
+      transform: rotate(-5deg);
+    }
+
+    .photo-node.two {
+      width: 184px;
+      height: 132px;
+      right: 8px;
+      top: 22px;
+      transform: rotate(4deg);
+      border-radius: 22px;
+    }
+
+    .photo-node.three {
+      width: 172px;
+      height: 210px;
+      left: 24px;
+      bottom: 32px;
+      transform: rotate(4deg);
+    }
+
+    .photo-node.four {
+      width: 158px;
+      height: 204px;
+      right: 10px;
+      bottom: 44px;
+      transform: rotate(-4deg);
+    }
+
+    .portrait-caption {
+      position: absolute;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 80%;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .78);
+      border: 1px solid rgba(0, 0, 0, .08);
+      color: var(--muted);
+      text-align: center;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .section {
+      padding: 100px max(24px, calc((100vw - 1180px) / 2));
+    }
+
+    .section.soft {
+      background: var(--soft);
+    }
+
+    .section.dark {
+      background: var(--dark);
+      color: #fff;
+    }
+
+    .section-head {
+      max-width: 800px;
+      margin-bottom: 40px;
+    }
+
+    .section-kicker {
+      margin: 0 0 12px;
+      color: var(--blue);
+      font-size: 15px;
+      font-weight: 720;
+      line-height: 1.45;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(36px, 4vw, 56px);
+      line-height: 1.08;
+      font-weight: 760;
+    }
+
+    .section-head p {
+      margin: 18px 0 0;
+      color: var(--body);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .dark .section-head p {
+      color: rgba(255, 255, 255, .68);
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+    }
+
+    .three-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .card,
+    .work-card,
+    .skill-card {
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .06);
+      border-radius: 12px;
+      padding: 30px;
+    }
+
+    .card h3,
+    .timeline-title,
+    .work-card h3,
+    .skill-card h3 {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.18;
+      font-weight: 730;
+    }
+
+    .card p,
+    .timeline-body,
+    .work-card p,
+    .skill-card p {
+      margin: 14px 0 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.72;
+    }
+
+    .pill-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+    }
+
+    .pill {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: #f1f1f4;
+      color: #444449;
+      font-size: 12px;
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .timeline {
+      display: grid;
+      border-top: 1px solid var(--line);
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 190px 1fr;
+      gap: 34px;
+      padding: 30px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .timeline-time {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .timeline-org {
+      margin-top: 8px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .work-card {
+      min-height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .work-label {
+      margin-bottom: 18px;
+      color: var(--green);
+      font-size: 13px;
+      line-height: 1.45;
+      font-weight: 720;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: .95fr 1.05fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .about-hero {
+      min-height: 430px;
+      border-radius: 12px;
+      background:
+        linear-gradient(135deg, rgba(255, 255, 255, .13), rgba(255, 255, 255, .03)),
+        #242426;
+      border: 1px solid rgba(255, 255, 255, .1);
+      padding: 34px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .about-hero h3 {
+      margin: 0;
+      max-width: 520px;
+      font-size: clamp(32px, 4vw, 54px);
+      line-height: 1.08;
+      font-weight: 760;
+    }
+
+    .about-hero p,
+    .about-card p {
+      color: rgba(255, 255, 255, .68);
+    }
+
+    .about-meta {
+      color: rgba(255, 255, 255, .78);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .about-cards {
+      display: grid;
+      gap: 18px;
+    }
+
+    .about-card {
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .08);
+      border: 1px solid rgba(255, 255, 255, .12);
+      padding: 28px;
+    }
+
+    .about-card h3 {
+      margin: 0;
+      font-size: 25px;
+    }
+
+    .about-card .pill {
+      background: rgba(255, 255, 255, .12);
+      color: rgba(255, 255, 255, .86);
+    }
+
+    .closing {
+      text-align: center;
+      padding-top: 110px;
+      padding-bottom: 110px;
+    }
+
+    .closing h2 {
+      max-width: 780px;
+      margin: 0 auto;
+    }
+
+    .closing p {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: var(--body);
+      font-size: 18px;
+      line-height: 1.65;
+    }
+
+    .contact-line {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 50;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      background: rgba(0, 0, 0, .32);
+      backdrop-filter: blur(12px);
+    }
+
+    .modal.open {
+      display: flex;
+    }
+
+    .modal-panel {
+      width: min(760px, 100%);
+      max-height: min(760px, calc(100vh - 48px));
+      overflow: auto;
+      border-radius: 28px;
+      background: rgba(255, 255, 255, .94);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .28);
+      padding: 30px;
+    }
+
+    .modal-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: start;
+      margin-bottom: 22px;
+    }
+
+    .modal-head h3 {
+      margin: 0;
+      font-size: 28px;
+      line-height: 1.2;
+    }
+
+    .persona-panel {
+      width: min(940px, 100%);
+    }
+
+    .persona-layout {
+      display: grid;
+      grid-template-columns: .88fr 1.12fr;
+      gap: 18px;
+      margin-top: 18px;
+    }
+
+    .persona-lead {
+      min-height: 360px;
+      border-radius: 18px;
+      padding: 28px;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, .97) 0%, rgba(255, 255, 255, .9) 52%, rgba(255, 255, 255, .68) 100%),
+        url("hero-photo.jpg");
+      background-size: cover;
+      background-position: 56% center;
+      border: 1px solid rgba(0, 0, 0, .06);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .persona-lead h4 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+    }
+
+    .persona-lead p {
+      margin: 18px 0 0;
+      color: var(--body);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .persona-mark {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(0, 0, 0, .12);
+      background: rgba(255, 255, 255, .6);
+      color: #3d3d42;
+      font-size: 13px;
+      font-weight: 720;
+    }
+
+    .persona-cards {
+      display: grid;
+      gap: 14px;
+    }
+
+    .persona-card {
+      border-radius: 18px;
+      background: #fff;
+      border: 1px solid rgba(0, 0, 0, .06);
+      padding: 22px;
+      position: relative;
+      overflow: hidden;
+      min-height: 172px;
+    }
+
+    .persona-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(90deg, rgba(255, 255, 255, .96) 0%, rgba(255, 255, 255, .9) 48%, rgba(255, 255, 255, .7) 100%),
+        var(--persona-bg);
+      background-size: cover;
+      background-position: center;
+      opacity: .74;
+      transform: scale(1.02);
+    }
+
+    .persona-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .persona-card.character {
+      --persona-bg: url("persona-2.jpg");
+    }
+
+    .persona-card.travel {
+      --persona-bg: url("persona-3.jpg");
+    }
+
+    .persona-card.life {
+      --persona-bg: url("persona-1.jpg");
+    }
+
+    .persona-card h4 {
+      margin: 0;
+      color: var(--blue);
+      font-size: 16px;
+    }
+
+    .persona-card p {
+      margin: 12px 0 0;
+      color: var(--body);
+      line-height: 1.68;
+      font-size: 14px;
+    }
+
+    .close-button {
+      margin-top: 22px;
+      justify-self: end;
+      background: #111113;
+    }
+
+    @media (max-width: 920px) {
+      .nav {
+        height: auto;
+        min-height: 64px;
+        align-items: start;
+        gap: 12px;
+        padding-top: 12px;
+        padding-bottom: 12px;
+        flex-direction: column;
+      }
+
+      .nav-links {
+        width: 100%;
+        gap: 6px;
+        overflow-x: auto;
+        padding-bottom: 2px;
+      }
+
+      .nav-links a {
+        padding: 8px 11px;
+        font-size: 13px;
+      }
+
+      .hero {
+        min-height: 680px;
+        padding-top: 72px;
+      }
+
+      .hero-grid,
+      .card-grid,
+      .three-grid,
+      .about-grid,
+      .persona-layout,
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portrait-card {
+        justify-self: center;
+        width: min(360px, 100%);
+        min-height: 450px;
+      }
+
+      .photo-node.center {
+        width: 178px;
+        height: 224px;
+      }
+
+      .photo-node.one,
+      .photo-node.four {
+        width: 128px;
+        height: 166px;
+      }
+
+      .photo-node.two {
+        width: 146px;
+        height: 110px;
+      }
+
+      .photo-node.three {
+        width: 140px;
+        height: 176px;
+      }
+
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+
+      .modal-panel {
+        border-radius: 20px;
+        padding: 22px;
+      }
+
+      .modal-head {
+        display: grid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="nav" aria-label="页面目录">
+      <a class="brand" href="#about">
+        <span class="brand-mark">HZ</span>
+        <span>Hannah Zhou</span>
+      </a>
+      <div class="nav-links">
+        <a class="active" href="#about">关于我</a>
+        <a href="#education">教育背景</a>
+        <a href="#experience">实习经历</a>
+        <a href="#projects">项目经历</a>
+        <a href="#skills">技能特长</a>
+      </div>
+    </nav>
+
+    <section class="hero" id="about">
+      <div class="hero-grid">
+        <div>
+          <p class="eyebrow">Public Finance · VC IR · Research & Analytics</p>
+          <h1>周卉涵</h1>
+          <p class="role">Finance & Research Candidate</p>
+          <p class="hero-copy">关注公共财政、宏观政策、风险监测与行业研究。经历覆盖人民币 IR、咨询、能源风控、证券研究和国际财经研究，也在尝试从后台分析走向更面向人的沟通与连接。</p>
+          <div class="education-strip" aria-label="教育背景摘要">
+            <span>中央财经大学 · 中国公共财政与政策研究院 · 财政学硕士研一（2025.09 - 2028.06）</span>
+            <span>山东大学 · 经济学院 · 经济学学士（2021.09 - 2025.06）</span>
+          </div>
+          <div class="actions">
+            <button class="button secondary" id="personaButton" type="button">进一步了解</button>
+            <a class="button secondary" href="mailto:hannahzhou705@126.com">联系我</a>
+          </div>
+
+        </div>
+
+        <figure class="portrait-card">
+          <div class="photo-node one"><img src="hero-photo.jpg" alt="城市街景生活照"></div>
+          <div class="photo-node two"><img src="persona-1.jpg" alt="夜景生活照"></div>
+          <div class="photo-node center"><img src="portrait.jpg" alt="周卉涵证件照"></div>
+          <div class="photo-node three"><img src="persona-2.jpg" alt="餐厅生活照"></div>
+          <div class="photo-node four"><img src="persona-3.jpg" alt="旅行生活照"></div>
+          <figcaption class="portrait-caption">Hannah Zhou · 财政学 / 经济学</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section soft" id="education">
+      <div class="section-head">
+        <p class="section-kicker">Education</p>
+        <h2>财政学与经济学训练，构成我的分析底色。</h2>
+        <p>课程与研究训练覆盖微观、宏观、计量、国际金融和大数据分析，为政策研究、行业判断与实证分析提供基础。</p>
+      </div>
+      <div class="card-grid">
+        <article class="card">
+          <h3>中央财经大学</h3>
+          <p>中国公共财政与政策研究院 · 财政学硕士研一<br>2025.09 - 2028.06</p>
+          <div class="pill-row">
+            <span class="pill">公共财政</span>
+            <span class="pill">财政政策</span>
+            <span class="pill">政策研究</span>
+          </div>
+        </article>
+        <article class="card">
+          <h3>山东大学</h3>
+          <p>经济学院 · 经济学学士<br>2021.09 - 2025.06</p>
+          <div class="pill-row">
+            <span class="pill">中级微观</span>
+            <span class="pill">中级宏观</span>
+            <span class="pill">计量经济学</span>
+            <span class="pill">国际金融</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="section-head">
+        <p class="section-kicker">Internships</p>
+        <h2>了解更多行业，也从后台分析走向更面向人的沟通与连接。</h2>
+        <p>从证券研究、能源风控、咨询到人民币 IR，我在不同业务场景中理解行业与组织，也逐步把研究、数据和材料能力延伸到投资者沟通与关系维护。</p>
+      </div>
+      <div class="timeline">
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2026.05 - 至今</div>
+            <div class="timeline-org">蓝驰创投</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">人民币 IR</h3>
+            <p class="timeline-body">负责投资者关系维护、基金募集文件撰写、基金数据处理、基金运营及投资者活动支持。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2025.05 - 2025.07</div>
+            <div class="timeline-org">Frost & Sullivan</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">咨询师助理</h3>
+            <p class="timeline-body">针对能源动力行业进行市场研究，梳理消费电池和动力电池各下游市场，根据出货量数据预测未来市场规模；整理竞争厂家业务进展，分析企业在技术、规模、品牌、供应链等方面的优势。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2024.12 - 2025.03</div>
+            <div class="timeline-org">中国石油集团</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">年金风控部</h3>
+            <p class="timeline-body">跟踪宏观政策、债市动态、信用违约及风险事件，生成风控周报；进行持仓债券信用风险筛查，完成年金运行风险月度、季度监测报告。使用 Python 及 Wind 接口计算权益投资产品风险指标，产出可视化报告。</p>
+          </div>
+        </article>
+        <article class="timeline-item">
+          <div>
+            <div class="timeline-time">2024.08 - 2024.11</div>
+            <div class="timeline-org">华西证券</div>
+          </div>
+          <div>
+            <h3 class="timeline-title">研究所医药组</h3>
+            <p class="timeline-body">进行医药行业数据处理与分析，撰写主要品类的市场价格与销量周度跟踪报告；完成底稿文件资料收集与数据可视化，制作路演资料，并搭建血制品批签发数据库。</p>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section soft" id="projects">
+      <div class="section-head">
+        <p class="section-kicker">Projects & Writing</p>
+        <h2>文字功底强，参与发表多篇论文。</h2>
+        <p>这些研究和项目集中呈现了我对经济议题的选题能力、实证训练、研究写作和结果表达能力。</p>
+      </div>
+      <div class="three-grid">
+        <article class="work-card">
+          <div>
+            <div class="work-label">Published · 第二作者 · 2025.08</div>
+            <h3>租赁住房 REITs 的发展前景及风险收益</h3>
+            <p>基于长期资金投资视角，讨论租赁住房 REITs 的底层资产扩容空间、股债双重属性，以及运营风险、代理风险和估值波动风险。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">REITs</span>
+            <span class="pill">长期资金</span>
+            <span class="pill">风险收益</span>
+          </div>
+        </article>
+        <article class="work-card">
+          <div>
+            <div class="work-label">Awarded · 独立作者 · 2024.05</div>
+            <h3>数字经济与企业创新绩效</h3>
+            <p>来自中国上市公司的证据，研究数字经济对企业创新产出的促进作用，以及市场集中度对该机制的削弱影响。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">数字经济</span>
+            <span class="pill">企业创新</span>
+            <span class="pill">实证研究</span>
+          </div>
+        </article>
+        <article class="work-card">
+          <div>
+            <div class="work-label">Research Assistant · 2023-2024</div>
+            <h3>政府债务管理制度与资本性预算</h3>
+            <p>参与国家发改委委托课题，使用爬虫技术搜集政府网站 PDF 与数据，并使用 Python、Excel、Stata 负责实证部分研究。</p>
+          </div>
+          <div class="pill-row">
+            <span class="pill">政府债务</span>
+            <span class="pill">Python</span>
+            <span class="pill">Stata</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="section-head">
+        <p class="section-kicker">Skills</p>
+        <h2>技能特长服务于研究、材料和沟通。</h2>
+        <p>我希望用工具提高分析效率，也用表达能力把复杂信息转化成可讨论、可判断、可推进的材料。</p>
+      </div>
+      <div class="three-grid">
+        <article class="skill-card">
+          <h3>数据工具</h3>
+          <p>熟练使用 Python、Stata、Microsoft Office、Wind、Csmar、iFinD，掌握 SQL、C，并有 AI agent 使用经验。</p>
+          <div class="pill-row">
+            <span class="pill">Python</span>
+            <span class="pill">Stata</span>
+            <span class="pill">SQL</span>
+            <span class="pill">Wind</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>英文与写作</h3>
+          <p>英语可作为工作语言，CET-4 640，CET-6 577，TOEFL 99。具备英文材料阅读、翻译、报告撰写能力。</p>
+          <div class="pill-row">
+            <span class="pill">TOEFL 99</span>
+            <span class="pill">英文报告</span>
+            <span class="pill">研究写作</span>
+          </div>
+        </article>
+        <article class="skill-card">
+          <h3>可视化与展示</h3>
+          <p>能够使用 Thinkcell、Power BI 等可视化工具，将数据、行业结构和研究结论转化为清晰材料。</p>
+          <div class="pill-row">
+            <span class="pill">Thinkcell</span>
+            <span class="pill">Power BI</span>
+            <span class="pill">路演材料</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section dark">
+      <div class="section-head">
+        <p class="section-kicker">About Me</p>
+        <h2>在研究与实习之外，我也在真实世界里学习协作。</h2>
+        <p>志愿经历、兴趣爱好和跨文化沟通，让这个页面不止是一份履历，也是一点性格的轮廓。</p>
+      </div>
+      <div class="about-grid">
+        <article class="about-hero">
+          <div>
+            <h3>在捷克，把文化差异变成一堂堂可参与的国际课堂。</h3>
+            <p>AIESEC 捷克共和国 Office · SDGs 教育平权志愿者，面向当地 9-19 岁学生开展文化与教育活动。</p>
+          </div>
+          <div class="about-meta">
+            2026.01 - 2026.03<br>
+            English as working language · SDGs education · Cross-cultural collaboration
+          </div>
+        </article>
+        <div class="about-cards">
+          <article class="about-card">
+            <h3>内容运营与课程设计</h3>
+            <p>根据问卷与课堂观察设计节日、饮食、语言等文化模块，独立策划并执行 60+ 场互动课程，并协助举办烹饪体验、模拟人生等活动。</p>
+            <div class="pill-row">
+              <span class="pill">课程策划</span>
+              <span class="pill">互动教学</span>
+              <span class="pill">内容运营</span>
+            </div>
+          </article>
+          <article class="about-card">
+            <h3>兴趣爱好</h3>
+            <p>羽毛球、游泳、棋牌和滑雪。</p>
+            <div class="pill-row">
+              <span class="pill">羽毛球</span>
+              <span class="pill">游泳</span>
+              <span class="pill">滑雪</span>
+              <span class="pill">棋牌</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section closing">
+      <h2>Research, translated into decisions.</h2>
+      <p>欢迎围绕公共财政、宏观政策、行业研究、数据分析、基金 IR 或跨文化教育项目交流。</p>
+      <div class="actions" style="justify-content: center;">
+        <a class="button" href="mailto:hannahzhou705@126.com">发送邮件</a>
+        <a class="button secondary" href="#projects">回到项目经历</a>
+      </div>
+      <div class="contact-line">
+        <span>hannahzhou705@126.com</span>
+        <span>Central University of Finance and Economics</span>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="personaModal" aria-hidden="true">
+    <div class="modal-panel persona-panel" role="dialog" aria-modal="true" aria-labelledby="personaTitle">
+      <div class="modal-head">
+        <div>
+          <p class="section-kicker" style="margin-bottom: 8px;">Character Profile</p>
+          <h3 id="personaTitle">我是什么样的人</h3>
+        </div>
+        <button class="button close-button" id="closePersona" type="button" style="margin-top: 0;">关闭</button>
+      </div>
+      <div class="persona-layout">
+        <article class="persona-lead">
+          <div>
+            <div class="persona-mark">ENTJ</div>
+          </div>
+          <div>
+            <h4>稳定、外向，并且愿意在真实沟通中推进事情。</h4>
+            <p>我倾向于把自己理解为像水一样的人：情绪稳定，能适应环境，也能持续地向前流动。相比爆发式的表达，我更重视持续的判断、协调和执行。</p>
+          </div>
+        </article>
+        <div class="persona-cards">
+          <article class="persona-card character">
+            <h4>性格</h4>
+            <p>ENTJ，外向，情绪稳定。相比完全后台的数据处理，我更喜欢兼具分析、沟通和协作的工作，愿意在与人打交道的过程中理解需求、整合信息并推动结果落地。</p>
+          </article>
+          <article class="persona-card travel">
+            <h4>经历</h4>
+            <p>喜欢旅行，去过三个大洲、12 个国家，其中三个国家共 20 天的行程是 solo trip。旅行让我更习惯在陌生环境中做判断、处理变化，并保持开放的观察能力。</p>
+          </article>
+          <article class="persona-card life">
+            <h4>生活</h4>
+            <p>精力充沛，喜欢很多运动。运动是我保持稳定状态和恢复力的重要方式，也让我在高强度学习和工作之外维持清醒、专注和持续投入。</p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const personaButton = document.getElementById("personaButton");
+    const personaModal = document.getElementById("personaModal");
+    const closePersona = document.getElementById("closePersona");
+
+    personaButton.addEventListener("click", () => {
+      personaModal.classList.add("open");
+      personaModal.setAttribute("aria-hidden", "false");
+    });
+
+    closePersona.addEventListener("click", () => {
+      personaModal.classList.remove("open");
+      personaModal.setAttribute("aria-hidden", "true");
+    });
+
+    personaModal.addEventListener("click", (event) => {
+      if (event.target === personaModal) {
+        closePersona.click();
+      }
+    });
+  </script>
+</body>
+</html>
